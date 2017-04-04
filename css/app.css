@@ -2,3 +2,10 @@ body {
     margin: 0;
     padding: 0;
 }
+
+canvas {
+    position: absolute;
+    left: 10%;
+    top: 10%;
+    border: 1px solid black;
+}
