@@ -23,27 +23,44 @@ document.body.appendChild(canvas);
 // console.log(elem);
 // document.body.appendChild(elem);
 
-function Sprite(context, width, height, image, perFrame, speed) {
+function Sprite(context, width, height, image, speed, frames) {
     
     this.context = context;
     this.width = width;
     this.height = height;
     this.image = image;
 
+    
     this.speed = speed;
+    this.frames = frames;
 
-    this.index = 1;
-    this.count = 0;
-    this.perFrame = perFrame;      
+    this.duration = 0;      
         
 };
 
 Sprite.prototype.render = function() {
     
+    this.context.clearRect(0, 0, this.width, this.height);
+
+    let roundedDuration = Math.round(this.duration);
+    let frame = this.frames[roundedDuration % 4]
+
+
+
+    let x = frame * this.width; 
+    let y = 0;
+    
+
+    
+    console.log('roundedDuration:', roundedDuration);    
+    console.log('frame:', frame);
+    console.log('x, y: ', x , y);
+
+
     this.context.drawImage(
         this.image,
-        this.frameIndex * this.width,
-        0,
+        x,
+        y,
         this.width,
         this.height,
         0,
@@ -52,22 +69,21 @@ Sprite.prototype.render = function() {
         this.height);
 }
 
-Sprite.prototype.update = function(dt) {
+Sprite.prototype.update = function(diff) {
 
-    this.index += this.speed * dt;
-        
-    if(this.frameIndex == 5) {
-        this.frameIndex = 1;
-    }
+    this.duration += this.speed * diff;
+    console.log('diff:', diff);      
+    console.log('this.speed:', this.speed);    
+    console.log('duration:', this.duration);      
 }
 
-let lastTime;
+let lastTime = 0;
 
 function main() {
     let now = Date.now();
-    let dt = (now - lastTime) / 2;
-
-    dragonSprite.update(dt);
+    let diff = (now - lastTime) / 1000;
+    
+    dragonSprite.update(diff);
     dragonSprite.render();
 
     lastTime = now;
@@ -76,7 +92,7 @@ function main() {
 
 
 let dragonImg = new Image();
-let dragonSprite = new Sprite(ctx, 188, 136, dragonImg, 4);
+let dragonSprite = new Sprite(ctx, 188, 136, dragonImg, 16, [0,1,2,3]);
 
 dragonImg.addEventListener('load', main);
 
