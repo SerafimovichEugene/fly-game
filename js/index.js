@@ -1,5 +1,6 @@
 const Sprite = require('./sprite.js');
 const player = require('./player.js');
+const background = require('./background.js');
 
 let requestAnimFrame = (function(){
     return window.requestAnimationFrame       ||
@@ -15,11 +16,17 @@ let requestAnimFrame = (function(){
 let canvas = document.createElement("canvas");
 let ctx = canvas.getContext("2d");
 canvas.width = 800;
-canvas.height = 600;
+canvas.height = 400;
 document.body.appendChild(canvas);
 
-let lastTime = Date.now();
+function renderAll() {
 
+    ctx.clearRect(0, 0, 800, 400);
+    backgroundImage.renderBackground();
+    Dragon.renderPlayer();
+}
+
+let lastTime = Date.now();
 //main loop
 function main() {
     let now = Date.now();
@@ -27,7 +34,7 @@ function main() {
 
 
     Dragon.updatePlayer(diff);
-    Dragon.renderPlayer();
+    renderAll();
 
     lastTime = now;
     requestAnimFrame(main);    
@@ -37,13 +44,14 @@ let dragonImg = new Image();
 dragonImg.src = 'img/dragon-fly.png';
 
 let dragonSprite = new Sprite(ctx, 94, 67, dragonImg, 16, [0,1,2,3]);
+const backgroundImage = new background(ctx);
 
-let Dragon = new player(dragonSprite, [0,0]);
+let Dragon = new player(dragonSprite, [0, 0]);
 
 
 //event when flying up
 document.addEventListener('keydown', function(event) {
-        Dragon.fly(true); 
+        Dragon.fly(true);
     });
 
 //event when stop flying up
