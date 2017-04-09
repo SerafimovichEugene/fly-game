@@ -10,9 +10,7 @@ function Sprite(context, width, height, image, speed, frames) {
       
 };
 
-Sprite.prototype.render = function(num) {
-    
-    // this.context.clearRect(0, 0, 800, 600);
+Sprite.prototype.render = function(num) {   
 
     let roundedDuration = Math.round(this.duration);
     let frame = this.frames[roundedDuration % num];

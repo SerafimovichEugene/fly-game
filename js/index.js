@@ -1,6 +1,8 @@
 const Sprite = require('./sprite.js');
 const player = require('./player.js');
 const background = require('./background.js');
+const walls = require('./walls.js');
+const check = require('./check.js');
 
 let requestAnimFrame = (function(){
     return window.requestAnimationFrame       ||
@@ -23,44 +25,66 @@ function renderAll() {
 
     ctx.clearRect(0, 0, 800, 400);
     backgroundImage.renderBackground();
-    Dragon.renderPlayer();
+    dragon.renderPlayer();
+    wallArray.renderWalls();
+}
+
+function updateAll(diff) {
+    dragon.updatePlayer(diff);
+    wallArray.updateWalls(diff);
+
+    IsGameOver = checkObj.checkIntersections();
+}
+
+
+
+//main loop
+function main() {
+
+    let now = Date.now();
+    let diff = (now - lastTime) / 1000;    
+    updateAll(diff);
+    renderAll();
+    lastTime = now;
+  
+    if(!IsGameOver) {
+        requestAnimFrame(main);
+    }   
 }
 
 let lastTime = Date.now();
-//main loop
-function main() {
-    let now = Date.now();
-    let diff = (now - lastTime) / 1000;    
+let dragon, wallArray, backgroundImage, checkObj;
+let IsGameOver = false;
 
+function loadContent() {
+    const dragonImg = new Image('img/dragon-fly.png');
+    dragonImg.src = 'img/dragon-fly.png';
+    
+    backgroundImage = new background(ctx);
 
-    Dragon.updatePlayer(diff);
-    renderAll();
+    dragon = new player(new Sprite(ctx, 94, 67, dragonImg, 16, [0,1,2,3]), [0, 0]);
 
-    lastTime = now;
-    requestAnimFrame(main);    
+    wallArray = new walls(ctx);
+
+    checkObj = new check(dragon, wallArray, canvas);
+
+    main();
 }
 
-let dragonImg = new Image();
-dragonImg.src = 'img/dragon-fly.png';
-
-let dragonSprite = new Sprite(ctx, 94, 67, dragonImg, 16, [0,1,2,3]);
-const backgroundImage = new background(ctx);
-
-let Dragon = new player(dragonSprite, [0, 0]);
 
 
 //event when flying up
 document.addEventListener('keydown', function(event) {
-        Dragon.fly(true);
+        dragon.fly(true);
     });
 
 //event when stop flying up
 document.addEventListener('keyup', function(event) {
-        Dragon.fly(false);
+        dragon.fly(false);
     });
 
-//start main loop
-dragonImg.addEventListener('load', main);
+//load images and start main loop
+loadContent();
 
 
 

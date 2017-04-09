@@ -11,20 +11,19 @@ function player(sprite, position) {
 
 }
 
-player.prototype.updatePlayer = function(diff) { 
-
-    
+player.prototype.updatePlayer = function(diff) {
 
     this.speedOfFalling = Math.pow(2 * this.gravity * this.step, 1/2);
 
     if(this.onFly) {
         this.step += 100;
         this.position[1] -= this.speedOfFalling * diff;
-        
+        console.log(this.position[1]);
     }
     else {
-        this.step += 80;
+        this.step += 50;
         this.position[1] += this.speedOfFalling * diff;
+        console.log(this.position[1]);
     } 
     
     this.sprite.update(diff);
