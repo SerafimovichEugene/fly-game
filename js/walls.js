@@ -34,21 +34,20 @@ walls.prototype.updateWalls = function(diff) {
 
     
     time += Math.round(diff * 60);
-    // console.log('time ', time);
-    // console.log('% ', time % 16);
-    
-    if(time % 200 == 199){
+
+    console.log(this.wallArray.length);
+    if(time % 100 == 99){
         
-        this.wallArray.push(new wall([810, 0], 20, 170));
-        this.wallArray.push(new wall([810, 230], 20, 170));
-        console.log('in arr', this.wallArray.length);
+        this.wallArray.push(new wall([810, 0], 100, 120));
+        this.wallArray.push(new wall([810, 280], 100, 120));
+        
     }
     this.wallArray.forEach((value, index, array) => {
-        value.position[0] -= 1;        
+        value.position[0] -= 3;        
     });
 
     this.wallArray.forEach((value, index, array)=>{
-        if(value.position[0] < -20) {
+        if(value.position[0] < -100) {
             array.shift();
         }
     })

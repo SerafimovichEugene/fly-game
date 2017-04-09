@@ -18,12 +18,12 @@ player.prototype.updatePlayer = function(diff) {
     if(this.onFly) {
         this.step += 100;
         this.position[1] -= this.speedOfFalling * diff;
-        console.log(this.position[1]);
+        // console.log(this.position[1]);
     }
     else {
         this.step += 50;
         this.position[1] += this.speedOfFalling * diff;
-        console.log(this.position[1]);
+        // console.log(this.position[1]);
     } 
     
     this.sprite.update(diff);
