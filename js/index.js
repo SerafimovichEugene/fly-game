@@ -3,6 +3,7 @@ const player = require('./player.js');
 const background = require('./background.js');
 const walls = require('./walls.js');
 const check = require('./check.js');
+const coins = require('./coins.js');
 
 let requestAnimFrame = (function(){
     return window.requestAnimationFrame       ||
@@ -31,13 +32,14 @@ progressOfTiredness.appendChild(progressStripe);
 document.body.appendChild(progressOfTiredness);
 
 function updateProgressBar() {
+
     let currentTime = Math.floor(gameTime);
     
     if(currentTime > gameTimeRec) {
         gameTimeRec = currentTime;
         let currentProgres =  parseInt(progressStripe.style.width);
 
-        console.log(currentProgres);
+        // console.log(currentProgres);
 
         currentProgres -=1; 
         progressStripe.style.width = currentProgres + '%';
@@ -50,12 +52,15 @@ function renderAll() {
     backgroundImage.renderBackground();
     dragon.renderPlayer();
     wallArray.renderWalls();
+    coinArray.renderCoins();
 }
 
 function updateAll(diff) {
     
     dragon.updatePlayer(diff);
     wallArray.updateWalls(diff);
+    coinArray.updateCoins(diff);
+
     updateProgressBar();
     IsGameOver = checkObj.checkIntersections();
 }
@@ -76,14 +81,18 @@ function main() {
 }
 
 let lastTime = Date.now();
-let dragon, wallArray, backgroundImage, checkObj;
+let dragon, wallArray, coinArray, backgroundImage, checkObj;
 let IsGameOver = false;
 let gameTime = 0;
 let gameTimeRec = 1;
 
 function loadContent() {
-    const dragonImg = new Image('img/dragon-fly.png');
+
+    const dragonImg = new Image();
     dragonImg.src = 'img/dragon-fly.png';
+
+    const coinImg = new Image();
+    coinImg.src = 'img/coin-sprite-animation.png';
     
     backgroundImage = new background(ctx);
 
@@ -91,7 +100,9 @@ function loadContent() {
 
     wallArray = new walls(ctx);
 
-    checkObj = new check(dragon, wallArray, canvas);
+    coinArray = new coins(new Sprite(ctx, 50, 50, coinImg, 8, [0,1,2,3,4,5,6,7,8,9]));
+
+    checkObj = new check(dragon, wallArray, coinArray, canvas);
 
     main();
 }

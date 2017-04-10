@@ -29,32 +29,29 @@ walls.prototype.renderWalls = function() {
     }
 }
 
-let time = 0;
+let time = 75;
 
 walls.prototype.updateWalls = function(diff) {
 
-    
     time += Math.round(diff * 60);
 
-    if(time % 100 == 99){
+    if(time % 150 == 149){
 
         let randomSpacePosition = getRandomInt(0, 300);
         
         this.wallArray.push(new wall([810, 0], this.widthOfWall, randomSpacePosition));
         this.wallArray.push(new wall([810, randomSpacePosition + this.spaceHeigth], this.widthOfWall, 400 - randomSpacePosition - this.spaceHeigth));
-        
     }
-    
-    this.wallArray.forEach((value, index, array) => {
-        value.position[0] -= 3;        
+
+    this.wallArray.forEach((value) => {
+        value.position[0] -= 2;        
     });
 
     this.wallArray.forEach((value, index, array)=>{
         if(value.position[0] < -100) {
             array.shift();
         }
-    })
-    
+    });
 }
 
 function getRandomInt(min, max) {

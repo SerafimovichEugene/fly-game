@@ -1,14 +1,12 @@
-function check(player, walls, canvas) {
+function check(player, walls, coins, canvas) {
     this.player = player;
     this.walls = walls;
     this.field = canvas;
-
 }
 
 check.prototype.checkIntersections = function(){
 
     return this.ifOutOfField() || this.ifWall();
-
 }
 
 check.prototype.ifOutOfField = function() {
@@ -21,7 +19,6 @@ check.prototype.ifOutOfField = function() {
         return true;
     }
     return false;
-
 }
 
 check.prototype.ifWall = function() {
@@ -39,5 +36,7 @@ check.prototype.ifWall = function() {
     }
     return res;
 }
+
+
 
 module.exports = check;
