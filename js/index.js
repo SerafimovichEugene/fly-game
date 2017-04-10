@@ -21,6 +21,29 @@ canvas.width = 800;
 canvas.height = 400;
 document.body.appendChild(canvas);
 
+let progressOfTiredness = document.createElement('div');
+
+let progressStripe = document.createElement('span');
+
+progressOfTiredness.className = 'tiredness';
+progressStripe.style.width = '100%';
+progressOfTiredness.appendChild(progressStripe);
+document.body.appendChild(progressOfTiredness);
+
+function updateProgressBar() {
+    let currentTime = Math.floor(gameTime);
+    
+    if(currentTime > gameTimeRec) {
+        gameTimeRec = currentTime;
+        let currentProgres =  parseInt(progressStripe.style.width);
+
+        console.log(currentProgres);
+
+        currentProgres -=1; 
+        progressStripe.style.width = currentProgres + '%';
+    }
+}
+
 function renderAll() {
 
     ctx.clearRect(0, 0, 800, 400);
@@ -30,13 +53,12 @@ function renderAll() {
 }
 
 function updateAll(diff) {
+    
     dragon.updatePlayer(diff);
     wallArray.updateWalls(diff);
-
+    updateProgressBar();
     IsGameOver = checkObj.checkIntersections();
 }
-
-
 
 //main loop
 function main() {
@@ -46,15 +68,18 @@ function main() {
     updateAll(diff);
     renderAll();
     lastTime = now;
-  
+    gameTime += diff;
     if(!IsGameOver) {
         requestAnimFrame(main);
-    }   
+    }
+    
 }
 
 let lastTime = Date.now();
 let dragon, wallArray, backgroundImage, checkObj;
 let IsGameOver = false;
+let gameTime = 0;
+let gameTimeRec = 1;
 
 function loadContent() {
     const dragonImg = new Image('img/dragon-fly.png');

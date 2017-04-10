@@ -27,10 +27,10 @@ check.prototype.ifOutOfField = function() {
 check.prototype.ifWall = function() {
     let res = false;
     for(let i = 0; i < this.walls.wallArray.length; i++) {
-        if(this.player.position[0] + this.player.sprite.width < this.walls.wallArray[i].position[0] ||
-           this.player.position[1]+20 + this.player.sprite.height-35 < this.walls.wallArray[i].position[1] ||
-           this.walls.wallArray[i].position[0] + this.walls.wallArray[i].width < this.player.position[0] ||
-           this.walls.wallArray[i].position[1] + this.walls.wallArray[i].heigth < this.player.position[1]+20) {
+        if(this.player.position[0] + this.player.sprite.width - 10 < this.walls.wallArray[i].position[0] - 10 ||
+           this.player.position[1] + this.player.sprite.height - 20 < this.walls.wallArray[i].position[1] - 10 ||
+           this.walls.wallArray[i].position[0] + this.walls.wallArray[i].width -10 < this.player.position[0] + 10 ||
+           this.walls.wallArray[i].position[1] + this.walls.wallArray[i].heigth - 10 < this.player.position[1] + 20) {
                res =  false;
            }
         else {

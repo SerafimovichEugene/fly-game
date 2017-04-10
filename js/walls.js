@@ -3,7 +3,8 @@ function walls (context) {
     this.wallArray = [];
     this.image = new Image();
     this.image.src = 'img/wall.png';
-    
+    this.spaceHeigth = 150;
+    this.widthOfWall = 50; 
 }
 
 function wall (pos, width, heigth) {
@@ -35,13 +36,15 @@ walls.prototype.updateWalls = function(diff) {
     
     time += Math.round(diff * 60);
 
-    console.log(this.wallArray.length);
     if(time % 100 == 99){
+
+        let randomSpacePosition = getRandomInt(0, 300);
         
-        this.wallArray.push(new wall([810, 0], 100, 120));
-        this.wallArray.push(new wall([810, 280], 100, 120));
+        this.wallArray.push(new wall([810, 0], this.widthOfWall, randomSpacePosition));
+        this.wallArray.push(new wall([810, randomSpacePosition + this.spaceHeigth], this.widthOfWall, 400 - randomSpacePosition - this.spaceHeigth));
         
     }
+    
     this.wallArray.forEach((value, index, array) => {
         value.position[0] -= 3;        
     });
@@ -52,6 +55,10 @@ walls.prototype.updateWalls = function(diff) {
         }
     })
     
+}
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
 }
 
 module.exports = walls;
