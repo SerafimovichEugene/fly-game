@@ -1,59 +1,65 @@
-function check(player, walls, coins, canvas) {
+creatures = require('./creatureToCollect.js');
+
+function check(canvas, player, walls, coins, chikens) {
+    this.field = canvas;
     this.player = player;
     this.walls = walls;
     this.coins = coins;
-    this.field = canvas;
+    this.chikens = chikens;
+
 }
 
-check.prototype.checkIntersections = function(){
+check.prototype.checkIntersections = function () {
 
     return this.ifOutOfField() || this.ifWall();
 }
 
-check.prototype.ifOutOfField = function() {
+check.prototype.ifOutOfField = function () {
 
-    if(this.player.position[1]< -10) {
+    if (this.player.position[1] < -10) {
         this.player.position[1] = -10;
-    }
-    else if(this.player.position[1] > 350) {
+    } else if (this.player.position[1] > 350) {
         this.player.position[1] = 350;
         return true;
     }
     return false;
 }
 
-check.prototype.ifWall = function(arg) {
+check.prototype.ifWall = function (arg) {
 
     let res = false;
 
-    for(let i = 0; i < this.walls.wallArray.length; i++) {
-        if(this.player.position[0] + this.player.sprite.width - 10 < this.walls.wallArray[i].position[0] - 10 ||
-           this.player.position[1] + this.player.sprite.height - 20 < this.walls.wallArray[i].position[1] - 10 ||
-           this.walls.wallArray[i].position[0] + this.walls.wallArray[i].width -10 < this.player.position[0] + 10 ||
-           this.walls.wallArray[i].position[1] + this.walls.wallArray[i].heigth - 10 < this.player.position[1] + 20) {
-               res =  false;
-           }
-        else {
+    for (let i = 0; i < this.walls.wallArray.length; i++) {
+        if (this.player.position[0] + this.player.sprite.width - 10 < this.walls.wallArray[i].position[0] - 10 ||
+            this.player.position[1] + this.player.sprite.height - 20 < this.walls.wallArray[i].position[1] - 10 ||
+            this.walls.wallArray[i].position[0] + this.walls.wallArray[i].width - 10 < this.player.position[0] + 10 ||
+            this.walls.wallArray[i].position[1] + this.walls.wallArray[i].heigth - 10 < this.player.position[1] + 20) {
+            res = false;
+        } else {
             return true;
         }
     }
     return res;
 }
 
-check.prototype.ifCoin = function() {
+check.prototype.ifCreatureToCollect = function () {
 
     let res = false;
+    for (prop in this) {
 
-    for(let i = 0; i < this.coins.coinArray.length; i++) {
-        if(this.player.position[0] + this.player.sprite.width < this.coins.coinArray[i].position[0] + 10 ||
-           this.player.position[1] + this.player.sprite.height < this.coins.coinArray[i].position[1] - 10 ||
-           this.coins.coinArray[i].position[0] + 10 + this.coins.coinArray[i].sprite.width < this.player.position[0] - 10 ||
-           this.coins.coinArray[i].position[1] - 10  + this.coins.coinArray[i].sprite.width < this.player.position[1] - 10 ) {
-               res =  false;
-           }
-        else {
-            this.coins.coinArray.splice(i, 1);
-            return true;
+        if (this[prop] instanceof creatures) {
+
+            for (let i = 0; i < this[prop].creatureArray.length; i++) {
+                if (this.player.position[0] + this.player.sprite.width < this[prop].creatureArray[i].position[0] + 10 ||
+                    this.player.position[1] + this.player.sprite.height < this[prop].creatureArray[i].position[1] - 10 ||
+                    this[prop].creatureArray[i].position[0] + 10 + this[prop].creatureArray[i].sprite.width < this.player.position[0] - 10 ||
+                    this[prop].creatureArray[i].position[1] - 10 + this[prop].creatureArray[i].sprite.width < this.player.position[1] - 10) {
+                    res = false;
+                } else {
+                    this[prop].creatureArray.splice(i, 1);
+                    return this[prop].type;
+                }
+            }
         }
     }
     return res;

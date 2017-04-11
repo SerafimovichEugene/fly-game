@@ -1,21 +1,21 @@
 function Sprite(context, width, height, image, speed, frames) {
-    
+
     this.context = context;
     this.width = width;
     this.height = height;
-    this.image = image;    
+    this.image = image;
     this.speed = speed;
     this.frames = frames;
-    this.duration = 0;   
-      
+    this.duration = 0;
+
 };
 
-Sprite.prototype.render = function(num) {   
+Sprite.prototype.render = function (num) {
 
     let roundedDuration = Math.round(this.duration);
     let frame = this.frames[roundedDuration % num];
-    let x = frame * this.width; 
-    let y = 0;    
+    let x = frame * this.width;
+    let y = 0;
 
     this.context.drawImage(
         this.image,
@@ -29,8 +29,8 @@ Sprite.prototype.render = function(num) {
         this.height);
 };
 
-Sprite.prototype.update = function(diff) {    
-    this.duration += this.speed * diff;        
+Sprite.prototype.update = function (diff) {
+    this.duration += this.speed * diff;
 };
 
 module.exports = Sprite;
