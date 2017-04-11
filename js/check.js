@@ -1,6 +1,7 @@
 function check(player, walls, coins, canvas) {
     this.player = player;
     this.walls = walls;
+    this.coins = coins;
     this.field = canvas;
 }
 
@@ -21,8 +22,10 @@ check.prototype.ifOutOfField = function() {
     return false;
 }
 
-check.prototype.ifWall = function() {
+check.prototype.ifWall = function(arg) {
+
     let res = false;
+
     for(let i = 0; i < this.walls.wallArray.length; i++) {
         if(this.player.position[0] + this.player.sprite.width - 10 < this.walls.wallArray[i].position[0] - 10 ||
            this.player.position[1] + this.player.sprite.height - 20 < this.walls.wallArray[i].position[1] - 10 ||
@@ -37,6 +40,23 @@ check.prototype.ifWall = function() {
     return res;
 }
 
+check.prototype.ifCoin = function() {
 
+    let res = false;
+
+    for(let i = 0; i < this.coins.coinArray.length; i++) {
+        if(this.player.position[0] + this.player.sprite.width < this.coins.coinArray[i].position[0] + 10 ||
+           this.player.position[1] + this.player.sprite.height < this.coins.coinArray[i].position[1] - 10 ||
+           this.coins.coinArray[i].position[0] + 10 + this.coins.coinArray[i].sprite.width < this.player.position[0] - 10 ||
+           this.coins.coinArray[i].position[1] - 10  + this.coins.coinArray[i].sprite.width < this.player.position[1] - 10 ) {
+               res =  false;
+           }
+        else {
+            this.coins.coinArray.splice(i, 1);
+            return true;
+        }
+    }
+    return res;
+}
 
 module.exports = check;

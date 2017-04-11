@@ -1,22 +1,35 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #bec4ce;
 }
 
 canvas {
-    /*position: relative;*/
-
+    display: block;
     border: 1px solid black;
 }
 
+.scores {
+    display: block;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 40pt;
+}
+
+.instruction {
+    display: block;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 20pt;
+}
+
+.instruction > strong {
+    color: green;
+}
 
 .tiredness { 
-	/*position: relative;*/
 
-    width: 780px;
-    height: 20px;
+  width: 780px;
+  height: 20px;
 	background: #555;
-
 	-moz-border-radius: 25px;
 	-webkit-border-radius: 25px;
 	border-radius: 25px;
@@ -42,7 +55,5 @@ canvas {
     inset 0 -2px 6px rgba(0,0,0,0.4);
   position: relative;
   overflow: hidden;
-  
-  -webkit-transition: width 1s; /* For Safari 3.1 to 6.0 */
-
+  transition: width 1s;
 }

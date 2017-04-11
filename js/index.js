@@ -46,6 +46,14 @@ function updateProgressBar() {
     }
 }
 
+function updateScores() {
+
+    let scores = document.body.getElementsByClassName('scores')[0].getElementsByTagName('strong');
+    let score = parseInt(scores[0].innerHTML); 
+    scores[0].innerHTML = score + 1;
+
+}
+
 function renderAll() {
 
     ctx.clearRect(0, 0, 800, 400);
@@ -62,7 +70,12 @@ function updateAll(diff) {
     coinArray.updateCoins(diff);
 
     updateProgressBar();
+
     IsGameOver = checkObj.checkIntersections();
+
+    if(checkObj.ifCoin()) {
+        updateScores();
+    }
 }
 
 //main loop

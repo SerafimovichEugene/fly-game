@@ -10,13 +10,13 @@ function coin(position, sprite) {
     this.position = position;
 }
 
-let time = 149;
+let time = 148;
 
 coins.prototype.updateCoins = function(diff) {
 
     time += Math.round(diff * 60);
 
-    console.log(this.coinArray.length);
+    // console.log(this.coinArray);
 
     if(time % 150 == 149) {     
 
@@ -41,7 +41,7 @@ coins.prototype.renderCoins = function () {
     this.coinArray.forEach((value, index, array)=>{
 
         value.sprite.context.save();
-        value.sprite.context.translate(value.position[0], 0);    
+        value.sprite.context.translate(value.position[0], value.position[1]);    
         value.sprite.render(9);
         value.sprite.context.restore();
 

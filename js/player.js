@@ -21,7 +21,7 @@ player.prototype.updatePlayer = function(diff) {
         // console.log(this.position[1]);
     }
     else {
-        this.step += 50;
+        this.step += 60;
         this.position[1] += this.speedOfFalling * diff;
         // console.log(this.position[1]);
     } 
