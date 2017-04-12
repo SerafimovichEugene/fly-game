@@ -1,11 +1,12 @@
-creatures = require('./creatureToCollect.js');
+creatures = require('./creatures.js');
 
-function check(canvas, player, walls, coins, chikens) {
+function check(canvas, player, walls, coins, chikens, fireBalls) {
     this.field = canvas;
     this.player = player;
     this.walls = walls;
     this.coins = coins;
     this.chikens = chikens;
+    this.fireBalls = fireBalls;
     this.pickSound = new Audio('./msc/sfx_pick.flac');
 }
 
@@ -50,10 +51,10 @@ check.prototype.ifCreatureToCollect = function () {
         if (this[prop] instanceof creatures) {
 
             for (let i = 0; i < this[prop].creatureArray.length; i++) {
-                if (this.player.position[0] + this.player.sprite.width < this[prop].creatureArray[i].position[0] + 10 ||
-                    this.player.position[1] + this.player.sprite.height < this[prop].creatureArray[i].position[1] - 10 ||
-                    this[prop].creatureArray[i].position[0] + 10 + this[prop].creatureArray[i].sprite.width < this.player.position[0] - 10 ||
-                    this[prop].creatureArray[i].position[1] - 10 + this[prop].creatureArray[i].sprite.width < this.player.position[1] - 10) {
+                if (this.player.position[0] + this.player.sprite.width < this[prop].creatureArray[i].position[0] ||
+                    this.player.position[1] + this.player.sprite.height < this[prop].creatureArray[i].position[1] ||
+                    this[prop].creatureArray[i].position[0] + this[prop].creatureArray[i].sprite.width < this.player.position[0] ||
+                    this[prop].creatureArray[i].position[1] + this[prop].creatureArray[i].sprite.width < this.player.position[1]) {
                     res = false;
                 } else {
                     this.pickSound.play();

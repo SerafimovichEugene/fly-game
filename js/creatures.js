@@ -1,10 +1,11 @@
 getRandomInt = require('./getRandomInt.js');
 
-function creatures(sprite, type, tiks) {
+function creatures(sprite, type, tiks, speed) {
 
     this.sprite = sprite;
     this.creatureArray = [];
     this.type = type;
+    this.speed = speed;
     this.tiks = tiks;
     this.time = 149;
 }
@@ -24,7 +25,7 @@ creatures.prototype.updateCreatures = function (diff) {
     }
 
     this.creatureArray.forEach((value) => {
-        value.position[0] -= 2;
+        value.position[0] -= this.speed;
         value.sprite.update(diff);
     });
 
