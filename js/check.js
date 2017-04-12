@@ -18,8 +18,8 @@ check.prototype.ifOutOfField = function () {
 
     if (this.player.position[1] < -10) {
         this.player.position[1] = -10;
-    } else if (this.player.position[1] > 350) {
-        this.player.position[1] = 350;
+    } else if (this.player.position[1] > 620) {
+        // this.player.position[1] = 350;
         return true;
     }
     return false;

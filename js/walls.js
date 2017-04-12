@@ -36,12 +36,12 @@ walls.prototype.updateWalls = function (diff) {
 
     this.time += Math.round(diff * 60);
 
-    if (this.time % 150 == 149) {
+    if (this.time % 250 == 249) {
 
-        let randomSpacePosition = getRandomInt(0, 300);
+        let randomSpacePosition = getRandomInt(0, 600);
 
-        this.wallArray.push(new wall([810, 0], this.widthOfWall, randomSpacePosition));
-        this.wallArray.push(new wall([810, randomSpacePosition + this.spaceHeigth], this.widthOfWall, 400 - randomSpacePosition - this.spaceHeigth));
+        this.wallArray.push(new wall([1162, 0], this.widthOfWall, randomSpacePosition));
+        this.wallArray.push(new wall([1162, randomSpacePosition + this.spaceHeigth], this.widthOfWall, 648 - randomSpacePosition - this.spaceHeigth));
     }
 
     this.wallArray.forEach((value) => {

@@ -18,8 +18,8 @@ let requestAnimFrame = (function () {
 
 let canvas = document.createElement("canvas");
 let ctx = canvas.getContext("2d");
-canvas.width = 800;
-canvas.height = 400;
+canvas.width = 1152;
+canvas.height = 648;
 document.body.appendChild(canvas);
 
 let progressOfTiredness = document.createElement('div');
@@ -58,7 +58,7 @@ function updateScores() {
 
 function renderAll() {
 
-    ctx.clearRect(0, 0, 800, 400);
+    ctx.clearRect(0, 0, 1152, 648);
     backgroundImage.renderBackground();
     dragon.renderPlayer();
     wallArray.renderWalls();
