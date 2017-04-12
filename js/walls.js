@@ -5,7 +5,7 @@ function walls(context) {
     this.wallArray = [];
     this.image = new Image();
     this.image.src = 'img/wall.png';
-    this.spaceHeigth = 150;
+    this.spaceHeigth = 100;
     this.widthOfWall = 50;
     this.time = 75;
 }
@@ -36,12 +36,12 @@ walls.prototype.updateWalls = function (diff) {
 
     this.time += Math.round(diff * 60);
 
-    if (this.time % 250 == 249) {
+    if (this.time % 150 == 149) {
 
-        let randomSpacePosition = getRandomInt(0, 600);
+        let randomSpacePosition = getRandomInt(0, 100);
 
-        this.wallArray.push(new wall([1162, 0], this.widthOfWall, randomSpacePosition));
-        this.wallArray.push(new wall([1162, randomSpacePosition + this.spaceHeigth], this.widthOfWall, 648 - randomSpacePosition - this.spaceHeigth));
+        this.wallArray.push(new wall([910, randomSpacePosition], this.widthOfWall, 156));
+        this.wallArray.push(new wall([910, randomSpacePosition + getRandomInt(80, 170) + 156], this.widthOfWall, 156));
     }
 
     this.wallArray.forEach((value) => {

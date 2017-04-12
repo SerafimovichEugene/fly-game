@@ -2,8 +2,8 @@ function background(context) {
     this.context = context;
     this.image = new Image();
     this.image.src = 'img/background2.png';
-    this.width = 1152;
-    this.heigth = 648;
+    this.width = 908;
+    this.heigth = 512;
     this.step = 0;
 };
 

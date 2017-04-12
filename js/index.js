@@ -18,8 +18,8 @@ let requestAnimFrame = (function () {
 
 let canvas = document.createElement("canvas");
 let ctx = canvas.getContext("2d");
-canvas.width = 1152;
-canvas.height = 648;
+canvas.width = 908;
+canvas.height = 512;
 document.body.appendChild(canvas);
 
 let progressOfTiredness = document.createElement('div');
@@ -58,7 +58,7 @@ function updateScores() {
 
 function renderAll() {
 
-    ctx.clearRect(0, 0, 1152, 648);
+    ctx.clearRect(0, 0, 908, 512);
     backgroundImage.renderBackground();
     dragon.renderPlayer();
     wallArray.renderWalls();
@@ -99,6 +99,10 @@ function main() {
     if (!isGameOver && !isProgressBarEnd) {
         requestAnimFrame(main);
     }
+    else {
+        music.pause();
+        gameOver();
+    }
 }
 
 let lastTime = Date.now();
@@ -108,9 +112,13 @@ let isProgressBarEnd = false;
 let gameTime = 0;
 let gameTimeRec = 1;
 
+
+let music = new Audio('./msc/Flying_softly.mp3'); 
+
+
 function loadContent() {
 
-    const dragonImg = new Image();
+    const dragonImg = new Image('img/dragon-fly.png');
     dragonImg.src = 'img/dragon-fly.png';
 
     const coinImg = new Image();
@@ -125,12 +133,12 @@ function loadContent() {
 
     wallArray = new walls(ctx);
 
-    chikenArray = new creatures(new Sprite(ctx, 45.33, 55, chikenImg, 6, [0, 1, 2]), 'chicken', 600)
+    chikenArray = new creatures(new Sprite(ctx, 45.33, 55, chikenImg, 6, [0, 1, 2]), 'chicken', 700)
 
-    coinArray = new creatures(new Sprite(ctx, 50, 50, coinImg, 6, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), 'coin', 150);
+    coinArray = new creatures(new Sprite(ctx, 50, 50, coinImg, 6, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), 'coin', 200);
 
     checkObj = new check(canvas, dragon, wallArray, coinArray, chikenArray);
-
+    // music.play();
     main();
 }
 
@@ -144,5 +152,16 @@ document.addEventListener('keyup', function (event) {
     dragon.fly(false);
 });
 
-//load images and start main loop
+function gameOver() {
+
+    document.getElementById('gameOver').style.display = 'block';
+}
+
+music.addEventListener('ended', function() {
+    this.currentTime = 0;
+    this.play();
+}, false);
+
+
+
 loadContent();

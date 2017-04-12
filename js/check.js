@@ -6,7 +6,7 @@ function check(canvas, player, walls, coins, chikens) {
     this.walls = walls;
     this.coins = coins;
     this.chikens = chikens;
-
+    this.pickSound = new Audio('./msc/sfx_pick.flac');
 }
 
 check.prototype.checkIntersections = function () {
@@ -18,7 +18,7 @@ check.prototype.ifOutOfField = function () {
 
     if (this.player.position[1] < -10) {
         this.player.position[1] = -10;
-    } else if (this.player.position[1] > 620) {
+    } else if (this.player.position[1] > 512) {
         // this.player.position[1] = 350;
         return true;
     }
@@ -56,6 +56,7 @@ check.prototype.ifCreatureToCollect = function () {
                     this[prop].creatureArray[i].position[1] - 10 + this[prop].creatureArray[i].sprite.width < this.player.position[1] - 10) {
                     res = false;
                 } else {
+                    this.pickSound.play();
                     this[prop].creatureArray.splice(i, 1);
                     return this[prop].type;
                 }
