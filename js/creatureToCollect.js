@@ -20,7 +20,7 @@ creatures.prototype.updateCreatures = function (diff) {
     this.time += Math.round(diff * 60);
 
     if (this.time % this.tiks == (this.tiks - 1)) {
-        this.creatureArray.push(new creature([810, getRandomInt(0, 300)], this.sprite));
+        this.creatureArray.push(new creature([810, getRandomInt(0, 450)], this.sprite));
     }
 
     this.creatureArray.forEach((value) => {
