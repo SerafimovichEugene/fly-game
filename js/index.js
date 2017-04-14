@@ -139,15 +139,15 @@ function loadContent() {
 
     backgroundImage = new background(ctx);
 
-    dragon = new player(new Sprite(ctx, 94, 67, dragonImg, 16, [0, 1, 2, 3]), [0, 0]);
+    dragon = new player(new Sprite(ctx, 94, 67, dragonImg, 16, [0, 1, 2, 3]), [0, 0], 60, 40);
 
     wallArray = new walls(ctx);
 
-    chikenArray = new creatures(new Sprite(ctx, 45.33, 55, chikenImg, 6, [0, 1, 2]), 'chicken', 700, 2)
+    chikenArray = new creatures(new Sprite(ctx, 45.33, 55, chikenImg, 6, [0, 1, 2]), 'chicken', 700, 2, 40, 40)
 
-    coinArray = new creatures(new Sprite(ctx, 50, 50, coinImg, 6, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), 'coin', 200, 2);
+    coinArray = new creatures(new Sprite(ctx, 50, 50, coinImg, 6, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), 'coin', 200, 2, 40, 40);
 
-    fireBallArray = new creatures(new Sprite(ctx, 143, 55, fireBallImg, 6, [0, 1, 2, 3, 4, 5]), 'fire', 100, 5);
+    fireBallArray = new creatures(new Sprite(ctx, 143, 55, fireBallImg, 6, [0, 1, 2, 3, 4, 5]), 'fire', 100, 5, 25, 25);
 
     checkObj = new check(canvas, dragon, wallArray, coinArray, chikenArray, fireBallArray);
     // music.play();
@@ -173,7 +173,6 @@ function gameOver() {
 //     this.currentTime = 0;
 //     this.play();
 // }, false);
-
 
 
 loadContent();

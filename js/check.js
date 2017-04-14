@@ -20,7 +20,6 @@ check.prototype.ifOutOfField = function () {
     if (this.player.position[1] < -10) {
         this.player.position[1] = -10;
     } else if (this.player.position[1] > 512) {
-        // this.player.position[1] = 350;
         return true;
     }
     return false;
@@ -51,12 +50,14 @@ check.prototype.ifCreatureToCollect = function () {
         if (this[prop] instanceof creatures) {
 
             for (let i = 0; i < this[prop].creatureArray.length; i++) {
-                if (this.player.position[0] + this.player.sprite.width < this[prop].creatureArray[i].position[0] ||
-                    this.player.position[1] + this.player.sprite.height < this[prop].creatureArray[i].position[1] ||
-                    this[prop].creatureArray[i].position[0] + this[prop].creatureArray[i].sprite.width < this.player.position[0] ||
-                    this[prop].creatureArray[i].position[1] + this[prop].creatureArray[i].sprite.width < this.player.position[1]) {
+                if (this.player.position[0] + this.player.width < this[prop].creatureArray[i].position[0] ||
+                    this.player.position[1] - 10 + this.player.height < this[prop].creatureArray[i].position[1] ||
+                    this[prop].creatureArray[i].position[0] + this[prop].creatureArray[i].width < this.player.position[0] ||
+                    this[prop].creatureArray[i].position[1] + this[prop].creatureArray[i].height < this.player.position[1]  - 10) {
                     res = false;
                 } else {
+                    // console.log(this[prop].creatureArray[i]);
+                    // console.log(this.player);
                     this.pickSound.play();
                     this[prop].creatureArray.splice(i, 1);
                     return this[prop].type;

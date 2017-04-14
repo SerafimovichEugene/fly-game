@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/SerafimovichEugene/fly-game/issues"
   },
-  "homepage": "https://github.com/SerafimovichEugene/fly-game#readme"
+  "homepage": "https://github.com/SerafimovichEugene/fly-game#readme",
+  "devDependencies": {
+    "webpack": "^2.4.1"
+  }
 }
