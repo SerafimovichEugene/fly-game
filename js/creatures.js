@@ -1,6 +1,6 @@
 getRandomInt = require('./getRandomInt.js');
 
-function creatures(sprite, type, tiks, speed, width, height) {
+function creatures(sprite, type, timeOfAppearing, speed, width, height) {
 
     this.sprite = sprite;
     this.creatureArray = [];
@@ -10,8 +10,8 @@ function creatures(sprite, type, tiks, speed, width, height) {
 
     this.type = type;
     this.speed = speed;
-    this.tiks = tiks;
-    this.time = 149;
+    this.timeOfAppearing = timeOfAppearing;
+    this.time = 50;
 }
 
 function creature(position, sprite, width, height) {
@@ -26,9 +26,9 @@ function creature(position, sprite, width, height) {
 creatures.prototype.updateCreatures = function (diff) {
 
     this.time += Math.round(diff * 60);
-
-    if (this.time % this.tiks == (this.tiks - 1)) {
-        this.creatureArray.push(new creature([810, getRandomInt(0, 450)], this.sprite, this.width, this.height));
+    if (this.time % this.timeOfAppearing == (this.timeOfAppearing - 1)) {
+        
+        this.creatureArray.push(new creature([830, getRandomInt(0, 480)], this.sprite, this.width, this.height));
     }
 
     this.creatureArray.forEach((value) => {

@@ -7,7 +7,6 @@ function check(canvas, player, walls, coins, chikens, fireBalls) {
     this.coins = coins;
     this.chikens = chikens;
     this.fireBalls = fireBalls;
-    this.pickSound = new Audio('./msc/sfx_pick.flac');
 }
 
 check.prototype.checkIntersections = function () {
@@ -55,10 +54,8 @@ check.prototype.ifCreatureToCollect = function () {
                     this[prop].creatureArray[i].position[0] + this[prop].creatureArray[i].width < this.player.position[0] ||
                     this[prop].creatureArray[i].position[1] + this[prop].creatureArray[i].height < this.player.position[1]  - 10) {
                     res = false;
-                } else {
-                    // console.log(this[prop].creatureArray[i]);
-                    // console.log(this.player);
-                    this.pickSound.play();
+                } 
+                else {                    
                     this[prop].creatureArray.splice(i, 1);
                     return this[prop].type;
                 }
