@@ -20,6 +20,7 @@ let requestAnimFrame = (function () {
 let lastTime = Date.now();
 let dragon, wallArray, coinArray, chikenArray, backgroundImage, fireBallArray, checkObj;
 let isGameOver = false;
+let gameStarted = false;
 let isProgressBarEnd = false;
 let gameTime = 0;
 let gameTimeRec = 1;
@@ -170,6 +171,7 @@ document.addEventListener('keyup', function (event) {
 
 function gameOver() {
     crash.play();
+    gameStarted = false;
     isGameOver = true;
     let scores = document.body.getElementsByClassName('scores')[0].getElementsByTagName('strong');
     scores[0].innerHTML = '0';
@@ -184,6 +186,7 @@ function moreFireBalls() {
 }
 
 function startGame() {
+    gameStarted = true;
     ctx.clearRect(0, 0, 908, 512);
     loadContent();
     isGameOver = false;
@@ -205,6 +208,8 @@ $('#play').click(function() {
 
 $(document).keypress(function(e){
     if (e.which == 13){
-        $('#play').click();
+        if(!gameStarted) {
+            $('#play').click();
+        }
     }
 });
