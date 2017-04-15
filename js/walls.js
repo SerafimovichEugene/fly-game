@@ -40,8 +40,8 @@ walls.prototype.updateWalls = function (diff) {
 
         let randomSpacePosition = getRandomInt(0, 100);
 
-        this.wallArray.push(new wall([910, randomSpacePosition], this.widthOfWall, 156));
-        this.wallArray.push(new wall([910, randomSpacePosition + getRandomInt(80, 170) + 156], this.widthOfWall, 156));
+        this.wallArray.push(new wall([910, randomSpacePosition], this.widthOfWall, 110));
+        this.wallArray.push(new wall([910, randomSpacePosition + getRandomInt(100, 200) + 110], this.widthOfWall, 110));
     }
 
     this.wallArray.forEach((value) => {

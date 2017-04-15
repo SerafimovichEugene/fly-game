@@ -1,4 +1,4 @@
-function player(sprite, position) {
+function player(sprite, position, width, height) {
 
     this.sprite = sprite;
     this.position = position;
@@ -9,6 +9,9 @@ function player(sprite, position) {
     this.onFly = false;
     this.num = 1;
 
+    this.width = width;
+    this.height = height;
+
 }
 
 player.prototype.updatePlayer = function (diff) {
@@ -18,11 +21,9 @@ player.prototype.updatePlayer = function (diff) {
     if (this.onFly) {
         this.step += 100;
         this.position[1] -= this.speedOfFalling * diff;
-        // console.log(this.position[1]);
     } else {
         this.step += 60;
         this.position[1] += this.speedOfFalling * diff;
-        // console.log(this.position[1]);
     }
 
     this.sprite.update(diff);
