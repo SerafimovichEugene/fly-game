@@ -17,7 +17,6 @@ let requestAnimFrame = (function () {
         };
 })();
 
-
 let lastTime = Date.now();
 let dragon, wallArray, coinArray, chikenArray, backgroundImage, fireBallArray, checkObj;
 let isGameOver = false;
@@ -38,14 +37,8 @@ canvas.width = 908;
 canvas.height = 512;
 document.body.appendChild(canvas);
 
-let progressOfTiredness = document.createElement('div');
 
-let progressStripe = document.createElement('span');
-
-progressOfTiredness.className = 'tiredness';
-progressStripe.style.width = '100%';
-progressOfTiredness.appendChild(progressStripe);
-document.body.appendChild(progressOfTiredness);
+let progressStripe = document.getElementById('tirednessStripe');
 
 function updateProgressBar() {
 
@@ -66,6 +59,7 @@ function updateProgressBar() {
 }
 
 function updateScores() {
+
     pickCoin.play();
     let scores = document.body.getElementsByClassName('scores')[0].getElementsByTagName('strong');
     let score = parseInt(scores[0].innerHTML);
@@ -97,17 +91,18 @@ function updateAll(diff) {
 
     let collected = checkObj.ifCreatureToCollect();
     if (collected == 'coin') {
+
         updateScores();
-    } else if (collected == 'chicken') {
+    } 
+    else if (collected == 'chicken') {
+
         pickChicken.play();
         currentProgres = parseInt(progressStripe.style.width);
         currentProgres += 10;
         moreFireBalls();
         progressStripe.style.width = currentProgres + '%';
-        console.log(collected);
     }
     else if(collected == 'fire') {
-        console.log(collected);
         gameOver();
     }
 }
@@ -161,10 +156,7 @@ function loadContent() {
     fireBallArray = new creatures(new Sprite(ctx, 143, 55, fireBallImg, 6, [0, 1, 2, 3, 4, 5]), 'fire', 100, 5, 25, 25);
 
     checkObj = new check(canvas, dragon, wallArray, coinArray, chikenArray, fireBallArray);
-    // music.play();
-    // main();
 }
-
 
 //event when flying up
 document.addEventListener('keydown', function (event) {
@@ -179,11 +171,16 @@ document.addEventListener('keyup', function (event) {
 function gameOver() {
     crash.play();
     isGameOver = true;
+    let scores = document.body.getElementsByClassName('scores')[0].getElementsByTagName('strong');
+    scores[0].innerHTML = '0';
     $('#playWrapper').show();
 }
 
 function moreFireBalls() {
-    fireBallArray.timeOfAppearing = currentProgres;
+
+    if(!currentProgres < 20) {
+        fireBallArray.timeOfAppearing = currentProgres;
+    }
 }
 
 function startGame() {
@@ -200,16 +197,14 @@ music.addEventListener('ended', function() {
     this.currentTime = 0;
     this.play();
 }, false);
-
-
  
 $('#play').click(function() {
-    
     $('#playWrapper').hide();
     startGame();
 });
- 
 
-
-
-// // loadContent();
+$(document).keypress(function(e){
+    if (e.which == 13){
+        $('#play').click();
+    }
+});
