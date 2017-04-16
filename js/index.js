@@ -36,8 +36,9 @@ let ctx = canvas.getContext("2d");
 
 canvas.width = 908;
 canvas.height = 512;
-document.body.appendChild(canvas);
 
+$('.play').after(canvas);
+// document.body.appendChild(canvas);
 
 let progressStripe = document.getElementById('tirednessStripe');
 
@@ -175,7 +176,8 @@ function gameOver() {
     isGameOver = true;
     let scores = document.body.getElementsByClassName('scores')[0].getElementsByTagName('strong');
     scores[0].innerHTML = '0';
-    $('#playWrapper').show();
+    $('.play').show();
+    $('#gameOver').show();
 }
 
 function moreFireBalls() {
@@ -201,8 +203,9 @@ music.addEventListener('ended', function() {
     this.play();
 }, false);
  
-$('#play').click(function() {
-    $('#playWrapper').hide();
+$('.play').click(function() {
+    $('.play').hide();
+    $('#gameOver').hide();
     startGame();
 });
 
