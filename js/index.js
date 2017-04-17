@@ -174,8 +174,6 @@ function gameOver() {
     crash.play();
     gameStarted = false;
     isGameOver = true;
-    let scores = document.body.getElementsByClassName('scores')[0].getElementsByTagName('strong');
-    scores[0].innerHTML = '0';
     $('.play').show();
     $('#gameOver').show();
 }
@@ -188,6 +186,8 @@ function moreFireBalls() {
 }
 
 function startGame() {
+    let scores = document.body.getElementsByClassName('scores')[0].getElementsByTagName('strong');
+    scores[0].innerHTML = '0';
     gameStarted = true;
     ctx.clearRect(0, 0, 908, 512);
     loadContent();
