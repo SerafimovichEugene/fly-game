@@ -1,4 +1,4 @@
-const $ = require('jquery');
+// const $ = require('jquery');
 const Sprite = require('./sprite.js');
 const player = require('./player.js');
 const background = require('./background.js');
