@@ -158,17 +158,19 @@ function loadContent() {
     fireBallArray = new creatures(new Sprite(ctx, 143, 55, fireBallImg, 6, [0, 1, 2, 3, 4, 5]), 'fire', 100, 5, 25, 25);
 
     checkObj = new check(canvas, dragon, wallArray, coinArray, chikenArray, fireBallArray);
+    
+    //event when flying up
+    document.addEventListener('keydown', function (event) {
+        dragon.fly(true);
+    });
+
+    //event when stop flying up
+    document.addEventListener('keyup', function (event) {
+        dragon.fly(false);
+    });
 }
 
-//event when flying up
-document.addEventListener('keydown', function (event) {
-    dragon.fly(true);
-});
 
-//event when stop flying up
-document.addEventListener('keyup', function (event) {
-    dragon.fly(false);
-});
 
 function gameOver() {
     crash.play();

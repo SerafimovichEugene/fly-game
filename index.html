@@ -13,40 +13,42 @@
 <body>
 
     <nav class="navbar navbar-default" role="navigation">
-
         <div class="navbar-collapse collapse">
             <ul class="nav nav-justified">
                 <li><a href="#" class="navbar-brand">Hardcore Dragon Fly</a></li>
             </ul>
         </div>
-
     </nav>
 
-    <div class="container">
-
-        <div class="col-md-12">
-
-            <div class="ScoresWrapper">
-                <span class="scores">Scores:<strong>0</strong></span>
-            </div>            
-
-            <div class="canvasWrapper center-element">
-                <button type="button" class="play btn btn-success">Start</button>
-                <div id="gameOver"></div>
+    <div class="jumbotron">
+        <div class="container">
+            <div class="col-md-12">
+                <div class="ScoresWrapper">
+                    <span class="scores">Scores:<strong>0</strong></span>
+                </div>
+                <div class="canvasWrapper center-element">
+                    <button type="button" class="play btn btn-success">Start</button>
+                    <div id="gameOver"></div>
+                </div>
+                <div id="tiredness">
+                    <div id="tirednessStripe"></div>
+                </div>
             </div>
-                
-            <div id="tiredness">
-                <div id="tirednessStripe"></div>
-            </div>
+        </div>
+    </div>
 
-            <div class="footer center-element">
+    <div class="info container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Control</h2>
                 <p>Press any key to<strong> fly</strong></p>
                 <p>Collect chickes to<strong> replenish</strong> stamina</p>
             </div>
-
+            <div class="col-md-6">
+                <h2>About</h2>
+            </div>
         </div>
-
-    </div>
+    </div>   
 
     <script type="text/javascript" src="./js/bundle.js"></script>
 

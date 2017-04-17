@@ -8,14 +8,22 @@ body {
     background-color: #303054;
 }
 
-nav a {
-    color: white;
+.navbar {
+    margin-bottom: 0;
+}
+
+.navbar-brand {
+    float:none;
 }
 
 canvas {
     display: block;
     float: none;
     margin: 0 auto;
+}
+
+.container {
+    width: 918px;
 }
 
 /*.canvasWrapper {
@@ -71,24 +79,19 @@ canvas {
     font-size: 40pt;
 }
 
-.footer {
-    text-align: center;
-}
-
-.footer > p {
+.info  p {
     font-family: Verdana, Arial, sans-serif;
-    font-size: 20pt;
+    font-size: 16pt;
 }
 
-.footer > p > strong {
+.info  p  strong {
     color: green;
 }
 
 #tiredness {
     margin: 0 auto;
-    width: 895px;
+    width: 908px;
     height: 20px;
-    background: #d3d8e5;
     box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
 }
 
@@ -105,6 +108,3 @@ canvas {
     transition: width 1s;
 }
 
-.navbar-brand {
-    float:none;
-}
