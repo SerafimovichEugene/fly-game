@@ -212,7 +212,7 @@ $('.play').click(function() {
 $(document).keypress(function(e){
     if (e.which == 13){
         if(!gameStarted) {
-            $('#play').click();
+            $('.play').click();
         }
     }
 });
