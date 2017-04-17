@@ -2,18 +2,52 @@ body {
     margin: 0;
     padding: 0;
     background-color: #d3d8e5;
+    font-family: 'Chewy', cursive;
+}
+
+.container {
+    width: 918px;
 }
 
 .navbar-default {
     background-color: #303054;
+    border: 1px solid #303054;
+}
+
+.navbar-default .navbar-brand, i {
+    color: white;
+}
+
+.navbar-default i {
+    padding-top: 4px;
+    padding-right: 10px;
+}
+
+.nav > li > a {
+    display: inline;
+}
+
+.navbar-default i:hover {
+    color: #87898e;
 }
 
 .navbar {
     margin-bottom: 0;
 }
 
+.navbar-collapse {
+    width: 908px;
+    margin: 0 auto;
+    padding: 0;
+}
+
 .navbar-brand {
-    float:none;
+    float: left;
+    font-size: 30px;
+}
+
+.jumbotron {
+    background-color: #ededed;
 }
 
 canvas {
@@ -22,23 +56,19 @@ canvas {
     margin: 0 auto;
 }
 
-.container {
-    width: 918px;
-}
-
 /*.canvasWrapper {
     
 }*/
 
 .play {
-    position: absolute; 
-    left: 0; 
+    position: absolute;
+    left: 0;
     right: 0;
-    top: 200px; 
-    margin-left: auto; 
+    top: 300px;
+    margin-left: auto;
     margin-right: auto;
     text-align: center;
-
+    font-size: 30px;
     width: 100px;
     height: 60px;
     z-index: 4;
@@ -50,13 +80,13 @@ canvas {
 }
 
 #gameOver {
-    position: absolute; 
-    left: 0; 
+    position: absolute;
+    left: 0;
     right: 0;
     top: 76px;
     width: 908px;
     height: 512px;
-    margin-left: auto; 
+    margin-left: auto;
     margin-right: auto;
     background: black;
     opacity: 0.5;
@@ -75,16 +105,18 @@ canvas {
 }
 
 .scores {
-    font-family: Verdana, Arial, sans-serif;
     font-size: 40pt;
 }
 
-.info  p {
-    font-family: Verdana, Arial, sans-serif;
+.scores strong {
+    color: #d89c1a;
+}
+
+.info p {
     font-size: 16pt;
 }
 
-.info  p  strong {
+.info p strong {
     color: green;
 }
 
@@ -108,3 +140,19 @@ canvas {
     transition: width 1s;
 }
 
+.screens {
+    text-align: center;
+    font-size: 16pt;
+}
+
+.carousel {
+    margin-bottom: 30px;
+}
+
+footer {
+    text-align: center;
+    font-size: 30px;
+    background-color: #ededed;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}

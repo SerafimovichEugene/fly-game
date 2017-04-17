@@ -4,15 +4,15 @@ const player = require('./player.js');
 const background = require('./background.js');
 const walls = require('./walls.js');
 const check = require('./check.js');
-const creatures = require('./creatures.js');
+// const bootstrap = require('bootstrap');
 
-let requestAnimFrame = (function () {
+let requestAnimFrame = (function() {
     return window.requestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
         window.mozRequestAnimationFrame ||
         window.oRequestAnimationFrame ||
         window.msRequestAnimationFrame ||
-        function (callback) {
+        function(callback) {
             window.setTimeout(callback, 1000 / 60);
         };
 })();
@@ -28,7 +28,7 @@ let gameTimeRec = 1;
 let pickChicken;
 let pickCoin;
 let crash;
-let music = new Audio('./msc/grieg_in_the_hal_ of_the_mountain_king.mp3'); 
+let music = new Audio('./msc/grieg_in_the_hal_ of_the_mountain_king.mp3');
 
 let currentProgres;
 let canvas = document.createElement("canvas");
@@ -95,16 +95,14 @@ function updateAll(diff) {
     if (collected == 'coin') {
 
         updateScores();
-    } 
-    else if (collected == 'chicken') {
+    } else if (collected == 'chicken') {
 
         pickChicken.play();
         currentProgres = parseInt(progressStripe.style.width);
         currentProgres += 10;
         moreFireBalls();
         progressStripe.style.width = currentProgres + '%';
-    }
-    else if(collected == 'fire') {
+    } else if (collected == 'fire') {
         gameOver();
     }
 }
@@ -120,15 +118,14 @@ function main() {
     gameTime += diff;
     if (!isGameOver && !isProgressBarEnd) {
         requestAnimFrame(main);
-    }
-    else {
+    } else {
         music.pause();
         gameOver();
     }
 }
 
 function loadContent() {
-    
+
     pickChicken = new Audio('./msc/sfx_pick.flac');
     pickCoin = new Audio('./msc/coins_5.wav');
     crash = new Audio('./msc/qubodup-crash.ogg');
@@ -158,19 +155,17 @@ function loadContent() {
     fireBallArray = new creatures(new Sprite(ctx, 143, 55, fireBallImg, 6, [0, 1, 2, 3, 4, 5]), 'fire', 100, 5, 25, 25);
 
     checkObj = new check(canvas, dragon, wallArray, coinArray, chikenArray, fireBallArray);
-    
+
     //event when flying up
-    document.addEventListener('keydown', function (event) {
+    document.addEventListener('keydown', function(event) {
         dragon.fly(true);
     });
 
     //event when stop flying up
-    document.addEventListener('keyup', function (event) {
+    document.addEventListener('keyup', function(event) {
         dragon.fly(false);
     });
 }
-
-
 
 function gameOver() {
     crash.play();
@@ -182,7 +177,7 @@ function gameOver() {
 
 function moreFireBalls() {
 
-    if(!currentProgres < 20) {
+    if (!currentProgres < 20) {
         fireBallArray.timeOfAppearing = currentProgres;
     }
 }
@@ -194,7 +189,7 @@ function startGame() {
     ctx.clearRect(0, 0, 908, 512);
     loadContent();
     isGameOver = false;
-    music = new Audio('./msc/grieg_in_the_hal_ of_the_mountain_king.mp3');    
+    music = new Audio('./msc/grieg_in_the_hal_ of_the_mountain_king.mp3');
     progressStripe.style.width = '100%';
     music.play();
     main();
@@ -204,16 +199,16 @@ music.addEventListener('ended', function() {
     this.currentTime = 0;
     this.play();
 }, false);
- 
+
 $('.play').click(function() {
     $('.play').hide();
     $('#gameOver').hide();
     startGame();
 });
 
-$(document).keypress(function(e){
-    if (e.which == 13){
-        if(!gameStarted) {
+$(document).keypress(function(e) {
+    if (e.which == 13) {
+        if (!gameStarted) {
             $('.play').click();
         }
     }
