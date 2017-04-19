@@ -42,7 +42,8 @@ player.prototype.fly = function (arg) {
     if (!this.onFly) {
         this.step = 0;
         this.num = 4;
-    } else if (!arg) {
+    } 
+    if (!arg) {
         this.step = 0;
         this.num = 1;
     }
